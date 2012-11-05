@@ -19,7 +19,7 @@
    },
    "devDependencies": {
    },
-   "main": "./lib/index.js",
+   "main": "./lib/bemRender.js",
    "engines": {
       "node": "*"
    },
