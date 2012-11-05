@@ -1,5 +1,5 @@
 {
-  "name": "bemRender",
+  "name": "bemrender",
   "description": "express.js view render based on BEM methodology",
   "version": "0.1.0",
   "author": "Ershov Konstantin <ershov.konst@gmail.com>",
