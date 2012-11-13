@@ -33,7 +33,68 @@
         <section id="main_content">
           <h1>bemRender</h1>
 
-<p>express.js view render based on BEM methodology</p>
+          <p>express.js view render based on BEM methodology</p>
+
+          <h2>how to use</h2>
+          <p>configuration</p>
+          <code>
+             app.set('view engine', 'json');<br/>
+             app.engine('json', require('./lib/bemRender')({<br/>
+               express : app,<br/>
+               blocksPath : __dirname + "/blocks",<br/>
+               publicPath : __dirname + "/public"<br/>
+             }));
+          </code>
+          <p>render</p>
+          <code>
+             app.get('/hello', function(req, res){<br/>
+               res.render("index");<br/>
+             });
+          </code>
+           <h2>directory structure</h2>
+           views<br/>
+           |_index.json<br/>
+           |_secondPage.json<br/>
+           blocks<br/>
+           |_page<br/>
+           | |_page.html<br/>
+           |<br/>
+           |_button<br/>
+           |_button.js<br/>
+           |_button.less<br/>
+           |_cross.png<br/>
+
+           <h2>code example</h2>
+
+           <p>blocks/button.html</p>
+           <code><button class="{{=it.blockName}} {{=it.mods}}">{{=it.content}}</button></code>
+
+           <p>blocks/button.less</p>
+           <code>
+           .button {<br/>
+              border: 1px dotted black;<br/>
+              background: url("/blocks/button/cross.png") no-repeat;<br/>
+           }
+           </code>
+
+           <p>views/index.json</p>
+           <code>
+            {<br/>
+               "block"  : "page",<br/>
+               "title"  : "Заголовок страницы",<br/>
+               "css" : [],<br/>
+               "js" : [],<br/>
+               "content": [<br/>
+                  {<br/>
+                     "block" : "button",<br/>
+                     "content": "Кнопка",<br/>
+                     "mods" : [<br/>
+                        {"size" : "big"}<br/>
+                     ]<br/>
+                  }<br/>
+               ]<br/>
+            }<br/>
+           </code>
         </section>
 
         <footer>
