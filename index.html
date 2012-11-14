@@ -36,7 +36,7 @@
           <p>express.js view render based on BEM methodology</p>
 
           <h2>how to use</h2>
-          <b>configuration</b>
+          <p>configuration</p>
           <code>
              app.set('view engine', 'json');<br/>
              app.engine('json', require('./lib/bemRender')({<br/>
@@ -45,7 +45,7 @@
              &nbsp;&nbsp;&nbsp;publicPath : __dirname + "/public"<br/>
              }));
           </code>
-          <b>render</b>
+          <p>render</p>
           <code>
              app.get('/hello', function(req, res){<br/>
              &nbsp;&nbsp;&nbsp;res.render("index");<br/>
