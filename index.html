@@ -18,7 +18,7 @@
       <div class="inner">
 
         <header>
-          <h1>Bemrender</h1>
+          <h1>bemRender</h1>
           <h2>express.js view render based on BEM methodology</h2>
         </header>
 
@@ -36,19 +36,19 @@
           <p>express.js view render based on BEM methodology</p>
 
           <h2>how to use</h2>
-          <p>configuration</p>
+          <b>configuration</b>
           <code>
              app.set('view engine', 'json');<br/>
              app.engine('json', require('./lib/bemRender')({<br/>
-               express : app,<br/>
-               blocksPath : __dirname + "/blocks",<br/>
-               publicPath : __dirname + "/public"<br/>
+             &nbsp;&nbsp;&nbsp;express : app,<br/>
+             &nbsp;&nbsp;&nbsp;blocksPath : __dirname + "/blocks",<br/>
+             &nbsp;&nbsp;&nbsp;publicPath : __dirname + "/public"<br/>
              }));
           </code>
-          <p>render</p>
+          <b>render</b>
           <code>
              app.get('/hello', function(req, res){<br/>
-               res.render("index");<br/>
+             &nbsp;&nbsp;&nbsp;res.render("index");<br/>
              });
           </code>
            <h2>directory structure</h2>
@@ -57,7 +57,7 @@
            |_secondPage.json<br/>
            blocks<br/>
            |_page<br/>
-           | |_page.html<br/>
+           |&nbsp;|_page.html<br/>
            |<br/>
            |_button<br/>
            |_button.js<br/>
@@ -67,32 +67,32 @@
            <h2>code example</h2>
 
            <p>blocks/button.html</p>
-           <code><button class="{{=it.blockName}} {{=it.mods}}">{{=it.content}}</button></code>
+           <code>&lt;button class=&quot;{{=it.blockName}} {{=it.mods}}&quot;&gt;{{=it.content}}&lt;/button&gt;</code>
 
            <p>blocks/button.less</p>
            <code>
            .button {<br/>
-              border: 1px dotted black;<br/>
-              background: url("/blocks/button/cross.png") no-repeat;<br/>
+           &nbsp;&nbsp;&nbsp;border: 1px dotted black;<br/>
+           &nbsp;&nbsp;&nbsp;background: url("/blocks/button/cross.png") no-repeat;<br/>
            }
            </code>
 
            <p>views/index.json</p>
            <code>
             {<br/>
-               "block"  : "page",<br/>
-               "title"  : "Заголовок страницы",<br/>
-               "css" : [],<br/>
-               "js" : [],<br/>
-               "content": [<br/>
-                  {<br/>
-                     "block" : "button",<br/>
-                     "content": "Кнопка",<br/>
-                     "mods" : [<br/>
-                        {"size" : "big"}<br/>
-                     ]<br/>
-                  }<br/>
-               ]<br/>
+              &nbsp;&nbsp;&nbsp;"block"  : "page",<br/>
+              &nbsp;&nbsp;&nbsp;"title"  : "Заголовок страницы",<br/>
+              &nbsp;&nbsp;&nbsp;"css" : [],<br/>
+              &nbsp;&nbsp;&nbsp;"js" : [],<br/>
+              &nbsp;&nbsp;&nbsp;"content": [<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"block" : "button",<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"content": "Кнопка",<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"mods" : [<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"size" : "big"}<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]<br/>
+              &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;}<br/>
+              &nbsp;&nbsp;&nbsp;]<br/>
             }<br/>
            </code>
         </section>
