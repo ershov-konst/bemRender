@@ -1,0 +1,33 @@
+{
+   "block"  : "page",
+   "title"  : "bemRender - mvc-example",
+   "css" : [
+      "public/css/reset.less",
+      "public/css/mystyles.less"
+   ],
+   "js" : [],
+   "content": [
+      {
+         "block" : "page-wrapper",
+         "content": [
+            {
+               "block" : "header",
+               "content": [
+                  {
+                     "element" : "app-name",
+                     "content" : "mvc-example"
+                  }
+               ]
+            },
+            {
+               "block" : "wrapper",
+               "content": "{{=it.text}}"
+            }
+         ]
+      },
+      {
+         "block" : "footer",
+         "content": "bemRender - mvc-example &copy; 2012"
+      }
+   ]
+}

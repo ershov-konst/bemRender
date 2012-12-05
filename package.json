@@ -1,7 +1,7 @@
 {
   "name": "bemrender",
   "description": "express.js view render based on BEM methodology",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": "Ershov Konstantin <ershov.konst@gmail.com>",
   "keywords": [
     "express",
@@ -12,7 +12,8 @@
   "dependencies": {
     "dot": "0.2.x",
     "less": "1.3.x",
-    "mkdirp": "0.3.x"
+    "mkdirp": "0.3.x",
+    "express": "3.x"
   },
   "devDependencies": {},
   "main": "./lib/bemRender.js",
