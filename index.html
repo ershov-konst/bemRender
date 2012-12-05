@@ -54,8 +54,7 @@
              app.set('view engine', 'json');<br/>
              app.engine('json', require('./lib/bemRender')({<br/>
              &nbsp;&nbsp;&nbsp;express : app,<br/>
-             &nbsp;&nbsp;&nbsp;blocksPath : __dirname + "/blocks",<br/>
-             &nbsp;&nbsp;&nbsp;publicPath : __dirname + "/public"<br/>
+             &nbsp;&nbsp;&nbsp;rootPath : __dirname<br/>
              }));
           </code>
           <p>render</p>
