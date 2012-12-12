@@ -21,7 +21,18 @@
             },
             {
                "block" : "wrapper",
-               "content": "{{=it.text}}"
+               "content": [
+                  {
+                     "block" : "table",
+                     "content" : [
+                        {
+                           "element" : "row",
+                           "multiple": true,
+                           "content" : "{{=it.tableData}}"
+                        }
+                     ]
+                  }
+               ]
             }
          ]
       },
