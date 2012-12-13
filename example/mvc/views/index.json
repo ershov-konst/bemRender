@@ -28,6 +28,29 @@
                         {
                            "element" : "row",
                            "multiple": true,
+                           "content" : [
+                              {
+                                 "first" : "aaaa",
+                                 "second" : "bbbb"
+                              },
+                              {
+                                 "first" : "ccccc",
+                                 "second" : "dddd"
+                              },
+                              {
+                                 "first" : "eeeee",
+                                 "second" : "fffff"
+                              }
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "block" : "table",
+                     "content" : [
+                        {
+                           "element" : "row",
+                           "multiple": true,
                            "content" : "{{=it.tableData}}"
                         }
                      ]
