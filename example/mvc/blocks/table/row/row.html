@@ -1,4 +1,6 @@
-<tr class="{{=it.blockName}} {{=it.mods}}">
-    <td class="{{=it.getBlockName('td')}}">{{=it.content.first}}</td>
-    <td class="{{=it.getBlockName('td')}}">{{=it.content.second}}</td>
-</tr>
+{{~it.content :value:index}}
+   <tr class="{{=it.blockName}} {{=it.mods}} {{=index ? 'odd' : 'even'}}">
+       <td class="{{=it.getBlockName('td')}}">{{=value.first}}</td>
+       <td class="{{=it.getBlockName('td')}}">{{=value.second}}</td>
+   </tr>
+{{~}}
