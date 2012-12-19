@@ -1,5 +1,5 @@
 {{~it.content :value:index}}
-   <tr class="{{=it.blockName}} {{=it.mods}} {{=it.getMod(it.blockName, 'row', index ? 'odd' : 'even')}}">
+   <tr class="{{=it.blockName}} {{=it.mods}} {{=it.getMod(it.blockName, 'row', index%2 ? 'odd' : 'even')}}">
        <td class="{{=it.getElementName(it.blockName, 'td')}}">{{=value.first}}</td>
        <td class="{{=it.getElementName(it.blockName, 'td')}}">{{=value.second}}</td>
    </tr>
