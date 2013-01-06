@@ -23,8 +23,12 @@
                "block" : "wrapper",
                "content": [
                   {
-                     "block" : "wrapper",
+                     "block" : "article",
                      "content" : "{{=it.text}}"
+                  },
+                  {
+                     "block" : "article",
+                     "content" : "<h2>multiple elements</h2>"
                   },
                   {
                      "block" : "table",
