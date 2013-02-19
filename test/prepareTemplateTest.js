@@ -27,10 +27,10 @@ exports.prepareTemplate = {
          }
          else{
             switch (name){
-               case "block":
+               case "simple-block":
                   html = '<div class="{{=it.blockName}} {{=it.mods}}">{{=it.content}}</div>';
                   break;
-               case "element":
+               case "simple-element":
                   html = '<span class="{{=it.blockName}} {{=it.mods}}">{{=it.content}}</span>';
                   break;
                case "table":
@@ -57,34 +57,56 @@ exports.prepareTemplate = {
       bemRender.prototype.readJSON = function(jsonPath, cb){
          var json = "";
          switch (jsonPath){
-            case "block1.json":
+            case "testSimpleContentText.json":
                json = {
-                  "block" : "block",
+                  "block" : "simple-block",
                   "content": "content"
                };
                break;
-            case "block2.json":
+            case "testSimpleContentVariable.json":
                json = {
-                  "block" : "block",
-                  "content": "{{=it.val}}",
+                  "block" : "simple-block",
+                  "content": "{{=it.val}}"
+               };
+               break;
+            case "testBlockMods.json":
+               json = {
+                  "block" : "simple-block",
+                  "content": "content",
                   "mods" : [
                      {"size" : "big"},
                      {"color" : "red"}
                   ]
                };
                break;
-            case "block3.json":
+            case "testElement.json":
                json = {
-                  "block" : "block",
+                  "block" : "simple-block",
                   "content": [
                      {
-                        "element" : "element",
+                        "element" : "simple-element",
                         "content" : "{{=it.val}}"
                      }
                   ]
                };
                break;
-            case "block4.json":
+            case "testElementMods.json":
+               json = {
+                  "block" : "simple-block",
+                  "content": [
+                     {
+                        "element" : "simple-element",
+                        "content" : "content",
+                        "mods" : [
+                           {"size" : "big"},
+                           {"color" : "red"}
+                        ]
+                     }
+
+                  ]
+               };
+               break;
+            case "tableVariable.json":
                json = {
                   "block" : "table",
                   "content": [
@@ -92,6 +114,21 @@ exports.prepareTemplate = {
                         "element" : "tr",
                         "multiple": true,
                         "content" : "{{=it.val}}"
+                     }
+                  ]
+               };
+               break;
+            case "tableContent.json":
+               json = {
+                  "block" : "table",
+                  "content": [
+                     {
+                        "element" : "tr",
+                        "multiple": true,
+                        "content" : [
+                           {"f":1,"s":2},
+                           {"f":3,"s":4}
+                        ]
                      }
                   ]
                };
@@ -123,26 +160,44 @@ exports.prepareTemplate = {
       }
       callback();
    },
-   test1 : function(test){
-      new bemRender("block1.json", {}, function(err, string){
-         test.equal('<div class="block ">content</div>', string);
+   testSimpleContentText : function(test){
+      new bemRender("testSimpleContentText.json", {}, function(err, string){
+         test.equal('<div class="simple-block ">content</div>', string);
       });
       test.done();
    },
-   test2 : function(test){
-      new bemRender("block2.json", {val : "text"}, function(err, string){
-         test.equal('<div class=\"block block__size-big block__color-red\">text</div>', string);
+   testSimpleContentVariable : function(test){
+      new bemRender("testSimpleContentVariable.json", {val : "content"}, function(err, string){
+         test.equal('<div class="simple-block ">content</div>', string);
       });
       test.done();
    },
-   test3 : function(test){
-      new bemRender("block3.json", {val : "text"}, function(err, string){
-         test.equal('<div class="block "><span class="block__element ">text</span></div>', string);
+   testBlockMods : function(test){
+      new bemRender("testBlockMods.json", {}, function(err, string){
+         test.equal('<div class="simple-block simple-block__size-big simple-block__color-red">content</div>', string);
       });
       test.done();
    },
-   test4 : function(test){
-      new bemRender("block4.json", {val : [{f:1,s:2}, {f:3,s:4}]}, function(err, string){
+   testElement : function(test){
+      new bemRender("testElement.json", {val : "text"}, function(err, string){
+         test.equal('<div class="simple-block "><span class="simple-block__simple-element ">text</span></div>', string);
+      });
+      test.done();
+   },
+   testElementMods : function(test){
+      new bemRender("testElementMods.json", {}, function(err, string){
+         test.equal('<div class="simple-block "><span class="simple-block__simple-element simple-block__simple-element__size-big simple-block__simple-element__color-red">content</span></div>', string);
+      });
+      test.done();
+   },
+   testMultipleVariable : function(test){
+      new bemRender("tableVariable.json", {val : [{f:1,s:2}, {f:3,s:4}]}, function(err, string){
+         test.equal('<table class="table "><tr class="table__tr  table__tr__row-even"><td class="table__tr__td">1</td><td class="table__tr__td">2</td></tr><tr class="table__tr  table__tr__row-odd"><td class="table__tr__td">3</td><td class="table__tr__td">4</td></tr></table>', string);
+      });
+      test.done();
+   },
+   testMultipleContent : function(test){
+      new bemRender("tableContent.json", {}, function(err, string){
          test.equal('<table class="table "><tr class="table__tr  table__tr__row-even"><td class="table__tr__td">1</td><td class="table__tr__td">2</td></tr><tr class="table__tr  table__tr__row-odd"><td class="table__tr__td">3</td><td class="table__tr__td">4</td></tr></table>', string);
       });
       test.done();
