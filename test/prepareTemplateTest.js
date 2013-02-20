@@ -44,6 +44,24 @@ exports.prepareTemplate = {
 </tr>\
 {{~}}';
                   break;
+               case "multiple-element":
+                  html = '{{=(function(c, blockName){\
+                     var str = "";\
+                     for(var i = 0, l = c.length; i < l; i++){\
+                        str += "<span class=\'"+ blockName +"\'>" + c[i].text + "</span>";\
+                     }\
+                     return str;\
+                  })(it.content, it.blockName)}}';
+                  break;
+               case "multiple-element-inner-var":
+                  html = '{{=(function(c, blockName){\
+                     var str = "";\
+                     for(var i = 0, l = c.length; i < l; i++){\
+                        str += "<span class=\'{{=it.blockName}}\'>" + c[i].text + "</span>";\
+                     }\
+                     return str;\
+                  })(it.content, it.blockName)}}';
+                  break;
             }
 
             this.blocksHash[bPath] = {
@@ -133,6 +151,38 @@ exports.prepareTemplate = {
                   ]
                };
                break;
+            case "testHtmlTplWithJS1.json":
+               json = {
+                  "block" : "simple-block",
+                  "content": [
+                     {
+                        "element" : "multiple-element",
+                        "multiple": true,
+                        "content" : [
+                           {"text": "text1"},
+                           {"text": "text2"},
+                           {"text": "text3"}
+                        ]
+                     }
+                  ]
+               };
+               break;
+            case "testHtmlTplWithJS2.json":
+               json = {
+                  "block" : "simple-block",
+                  "content": [
+                     {
+                        "element" : "multiple-element-inner-var",
+                        "multiple": true,
+                        "content" : [
+                           {"text": "text1"},
+                           {"text": "text2"},
+                           {"text": "text3"}
+                        ]
+                     }
+                  ]
+               };
+               break;
          }
 
          cb(null, JSON.stringify(json));
@@ -199,6 +249,18 @@ exports.prepareTemplate = {
    testMultipleContent : function(test){
       new bemRender("tableContent.json", {}, function(err, string){
          test.equal('<table class="table "><tr class="table__tr  table__tr__row-even"><td class="table__tr__td">1</td><td class="table__tr__td">2</td></tr><tr class="table__tr  table__tr__row-odd"><td class="table__tr__td">3</td><td class="table__tr__td">4</td></tr></table>', string);
+      });
+      test.done();
+   },
+   testHtmlTplWithJs1 : function(test){
+      new bemRender("testHtmlTplWithJS1.json", {}, function(err, string){
+         test.equal("<div class=\"simple-block \"><span class='simple-block__multiple-element'>text1</span><span class='simple-block__multiple-element'>text2</span><span class='simple-block__multiple-element'>text3</span></div>", string);
+      });
+      test.done();
+   },
+   testHtmlTplWithJs2 : function(test){
+      new bemRender("testHtmlTplWithJS2.json", {}, function(err, string){
+         test.equal("<div class=\"simple-block \"><span class='simple-block__multiple-element-inner-var'>text1</span><span class='simple-block__multiple-element-inner-var'>text2</span><span class='simple-block__multiple-element-inner-var'>text3</span></div>", string);
       });
       test.done();
    }
