@@ -2,6 +2,7 @@ var
    express = require('express'),
    app = express(),
    path = require('path'),
+   bemUtil = require('../lib/bemUtil'),
    bemRender = require("../lib/bemRender")({
       express : app,
       rootPath : __dirname
@@ -66,7 +67,7 @@ exports.prepareTemplate = {
 
             this.blocksHash[bPath] = {
                "html": html,
-               "css" : this.getCssName(isElement, parent, name)
+               "css" : bemUtil.getCssName(isElement, parent, name)
             };
          }
          return html;
