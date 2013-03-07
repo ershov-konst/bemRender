@@ -18,13 +18,13 @@ var
 exports.prepareTemplate = {
    setUp : function(callback){
 
-      bemRender.prototype.loadHTML = function(isElement, parent, name){
+      bemRender.prototype.loadHTML = function(isElement, parent, name, blocksHash){
          var
             bPath = path.join("", isElement ? parent : "", name, name),
             html = "";
 
-         if (bPath in this.blocksHash){
-            html = this.blocksHash[bPath]["html"];
+         if (bPath in blocksHash){
+            html = blocksHash[bPath]["html"];
          }
          else{
             switch (name){
@@ -65,7 +65,7 @@ exports.prepareTemplate = {
                   break;
             }
 
-            this.blocksHash[bPath] = {
+            blocksHash[bPath] = {
                "html": html,
                "css" : bemUtil.getCssName(isElement, parent, name)
             };
