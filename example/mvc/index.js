@@ -7,7 +7,8 @@ app.set('view cache', false);
 app.set('view engine', 'json');
 app.engine('json', require('../../lib/bemRender')({
    express : app,
-   rootPath : __dirname
+   rootPath : __dirname,
+   debug : true
 }));
 //static files
 app.use(express.static(__dirname + '/public'));
