@@ -1,0 +1,24 @@
+<script src="/lib/ext/require.js"></script>
+{{? it.preparedJS}}
+<script type="text/javascript" src="{{=it.preparedJS}}"></script>
+{{?}}
+<script type="text/javascript">
+   (function(){
+      var 
+         libs = {{=it.libs}},
+         dependencies = {{=it.dependencies}};
+      
+      require(libs, function(){
+         require(dependencies, function(){
+            var args = arguments;
+            var config = new $br.Config({{=it.config}});
+            dependencies.forEach(function(d, i){
+               var elements = document.getElementsByClassName(d);
+               for (var e = 0, l = elements.length; e < l; e++){
+                  $br.storage.push(new args[i](elements[e], config.get(elements[e].id) || {}));
+               }
+            });
+         })
+      });
+   })();
+</script>
