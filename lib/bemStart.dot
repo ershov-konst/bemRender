@@ -13,7 +13,9 @@
             var args = arguments;
             var config = new $br.Config({{=it.config}});
             dependencies.forEach(function(d, i){
-               var elements = document.getElementsByClassName(d);
+               var
+                  className = d.replace(/js!/g, ""),
+                  elements = document.getElementsByClassName(className);
                for (var e = 0, l = elements.length; e < l; e++){
                   $br.storage.push(new args[i](elements[e], config.get(elements[e].id) || {}));
                }

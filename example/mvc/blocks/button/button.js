@@ -1,4 +1,4 @@
-define("button", [], function(){
+define("js!button", [], function(){
    var c = function(container){
       this.container = container;
 
