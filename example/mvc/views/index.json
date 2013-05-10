@@ -5,7 +5,9 @@
       "public/css/reset.less",
       "public/css/mystyles.less"
    ],
-   "js" : [],
+   "js" : [
+      "module!myModule"
+   ],
    "content": [
       {
          "block" : "page-wrapper",

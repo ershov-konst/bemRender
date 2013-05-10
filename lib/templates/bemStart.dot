@@ -1,4 +1,4 @@
-<script src="/lib/ext/require.js"></script>
+<script data-main="/pagesource/main.js" src="/lib/ext/require.js"></script>
 {{? it.preparedJS}}
 <script type="text/javascript" src="{{=it.preparedJS}}"></script>
 {{?}}
